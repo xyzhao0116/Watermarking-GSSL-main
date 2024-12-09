@@ -1,6 +1,6 @@
 # Watermarking Graph Self-Supervised Learning
 
-Code for WIFS 2024 paper **"Transferable Watermarking to Self-supervised Pre-trained Graph Encoders by Trigger Embeddings"** https://arxiv.org/abs/2406.13177
+This is a light-weight implementation of our WIFS 2024 paper **"Transferable Watermarking to Self-supervised Pre-trained Graph Encoders by Trigger Embeddings"** https://arxiv.org/abs/2406.13177
 
 # Overview
 Our implementation is based on PyTorch and dgl.
