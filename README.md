@@ -1,4 +1,4 @@
-# Watermarking Graph Self-Supervised-Learning
+# Watermarking Graph Self-Supervised Learning
 
 Code for WIFS 2024 paper **"Transferable Watermarking to Self-supervised Pre-trained Graph Encoders by Trigger Embeddings"** https://arxiv.org/abs/2406.13177
 
