@@ -64,7 +64,7 @@ def main(args):
     # downstream verification
     if args.task == 'ncls':
         classifier = Classifier(args.n_hidden, n_classes).cuda()
-        acc = train_classifier_ncls(args, ggd, classifier, data, features)
+        train_classifier_ncls(args, ggd, classifier, data, features)
         # g_with_trigger = direct_insert_trigger_nodes(data, sel_nids, key_feat)
         cs = evaluate_wm_ncls(args, ggd, classifier, data, g_with_trigger)
         return cs
@@ -113,7 +113,7 @@ if __name__ == '__main__':
                         help="feature dropout rate")
     parser.add_argument("--classifier-lr", type=float, default=0.001,
                         help="classifier learning rate")
-    parser.add_argument("--n-ggd-epochs", type=int, default=500,  # 500
+    parser.add_argument("--n-ggd-epochs", type=int, default=1000,
                         help="number of training epochs")
 
     parser.add_argument("--n-hidden", type=int, default=512,
@@ -137,17 +137,12 @@ if __name__ == '__main__':
 
     # wm
     parser.add_argument('--add_global', type=bool, default=False)
-    parser.add_argument('--seed', type=int, default=255)
+    parser.add_argument('--seed', type=int, default=225)
 
     parser.add_argument('--frac_n', type=float, default=0.1)
     parser.add_argument('--frac_f', type=float, default=0.2)
 
-    parser.add_argument('--lambda0', type=float, default=10.0,
-                        help='internal loss to enclose the trigger embeddings')
-    parser.add_argument('--lambda1', type=float, default=1.0,
-                        help='external loss to distinguish between normal embeddings and trigger embeddings')
-
-    # edge classification
+    # edge prediction
     parser.add_argument('--frac_etrain', type=float, default=0.9)
     parser.add_argument('--frac_e_validate', type=float, default=0.01)
 
@@ -156,6 +151,10 @@ if __name__ == '__main__':
                         help='[cos, mse]')
     parser.add_argument("--n-classifier-epochs", type=int, default=6000,   # 6000
                         help="number of training epochs")
+    parser.add_argument('--lambda0', type=float, default=10.0,
+                        help='internal loss to enclose the trigger embeddings')
+    parser.add_argument('--lambda1', type=float, default=1.0,
+                        help='external loss to distinguish between normal embeddings and trigger embeddings')
 
     parser.set_defaults(self_loop=False)
     args = parser.parse_args()
